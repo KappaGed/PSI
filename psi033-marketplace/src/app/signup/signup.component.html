@@ -1,1 +1,47 @@
-<p>signup works!</p>
+<div class="signup-container">
+  <h2>Create an account</h2>
+
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username">
+      <div *ngIf="signupForm.controls['username'].errors && (signupForm.controls['username'].touched || signupForm.controls['username'].dirty)">
+        <!--
+        <div *ngIf="signupForm.controls['username'].errors['required']">
+          Username is required.
+        </div>
+        <div *ngIf="signupForm.controls['username'].errors['minlength']">
+          Username must be at least 3 characters.
+        </div>
+        <div *ngIf="signupForm.controls['username'].errors['pattern']">
+          Username can only contain alphanumeric characters.
+        </div>
+            -->
+      </div>
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="signupForm.controls['password'].errors && (signupForm.controls['password'].touched || signupForm.controls['password'].dirty)">
+        <!--
+        <div *ngIf="signupForm.controls['password'].errors['required']">
+          Password is required.
+        </div>
+        <div *ngIf="signupForm.controls['password'].errors['minlength']">
+          Password must be at least 8 characters.
+        </div>
+        <div *ngIf="signupForm.controls['password'].errors['pattern']">
+          Password must contain at least one uppercase letter, one lowercase letter, and one digit.
+        </div>
+        -->
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!signupForm.valid">Create account</button>
+  </form>
+</div>
+
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+<div *ngIf="confirmationMessage">{{ confirmationMessage }}</div>
