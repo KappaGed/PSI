@@ -14,5 +14,26 @@ app.use(express.urlencoded({ extended: true })); // parse requests w/ type appli
 
 // simple route to test
 app.get("/", (req, res) => {
-    res.json({});
+    res.json({ message: "Welcome to our marketplace!" });
 });
+
+// set port/listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+});
+
+// mongodb db
+const db = require("./models/index");
+db.mongoose
+    .connect(db.url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log("Sucessfully conntected to database!");
+    })
+    .catch(err => {
+        console.log("Error connecting to database!", err);
+        process.exit();
+    });
