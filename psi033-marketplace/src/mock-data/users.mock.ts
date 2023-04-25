@@ -13,7 +13,6 @@ export const MOCK_USERS: User[] = [
   },
 ];
 
-
 export function updateMockUsers(users: User[]) {
   console.log(users);
 }

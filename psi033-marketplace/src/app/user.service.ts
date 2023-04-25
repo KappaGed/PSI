@@ -9,6 +9,7 @@ import { User } from '../app/user'
 })
 export class UserService {
   users: User[] = MOCK_USERS;
+  private currentUser: User | undefined;
 
   constructor() { }
 
@@ -47,6 +48,7 @@ export class UserService {
       const user = this.users.find((user) => user.username === username && user.password === password);
 
       if (user) {
+        this.currentUser = user;
         console.log("login successful");
         observer.next(true);
         observer.complete();
@@ -58,5 +60,12 @@ export class UserService {
     });
   }
 
+  logout(): void {
+    this.currentUser = undefined;
+  }
+
+  getCurrentUser(): User | undefined {
+    return this.currentUser;
+  }
 
 }

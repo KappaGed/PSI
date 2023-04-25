@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
           console.log("logged in sucessfully");
           this.router.navigate(['/dashboard']);
         } else {
-          this.errorMessage = 'Error logging in.';
+          this.errorMessage = 'Login unsucessful. Try again.';
         }
       }
     );
