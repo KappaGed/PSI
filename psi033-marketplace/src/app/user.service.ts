@@ -12,6 +12,7 @@ export class UserService {
 
   constructor() { }
 
+  // to-do: move into a separate service called AuthService after
   createUser(username: string, password: string): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       const userExists = this.users.some((user) => user.username === username);
@@ -28,6 +29,8 @@ export class UserService {
           password
         };
 
+        // mock data for now
+        // to-do: implement API
         console.log("adding new user");
         this.users.push(newUser);
         updateMockUsers(this.users);
@@ -37,5 +40,23 @@ export class UserService {
       }
     });
   }
+
+  // to-do: move into a separate service called AuthService after
+  login(username: string, password: string): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      const user = this.users.find((user) => user.username === username && user.password === password);
+
+      if (user) {
+        console.log("login successful");
+        observer.next(true);
+        observer.complete();
+      } else {
+        console.log("login failed");
+        observer.next(false);
+        observer.complete();
+      }
+    });
+  }
+
 
 }
