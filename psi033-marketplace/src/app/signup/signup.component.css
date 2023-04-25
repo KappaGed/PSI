@@ -23,6 +23,23 @@ form {
   font-family: sans-serif;
 }
 
+.form-container {
+  max-width: 500px; /* or any other fixed width you prefer */
+  margin: 0 auto; /* centers the container horizontally */
+}
+
+
+.password-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.password-input-container input {
+  width: 100%;
+}
+
+
 input {
   font-size: 1.2rem;
   padding: 10px;
@@ -49,7 +66,7 @@ button[type="submit"] {
 /* error message */
 .error-message {
   color: red;
-  font-size: 1rem;
+  font-size: 15px;
   margin-top: 10px;
   text-align: center;
 }
@@ -57,8 +74,9 @@ button[type="submit"] {
 /* success message */
 .success-message {
   color: green;
-  font-size: 1rem;
+  font-size: 15px;
   margin-top: 10px;
   text-align: center;
+  font-family: sans-serif;
 }
 

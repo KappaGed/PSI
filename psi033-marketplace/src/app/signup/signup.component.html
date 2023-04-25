@@ -1,47 +1,38 @@
 <div class="signup-container">
-  <h2>Create an account</h2>
-
+  <h2>Create an Account</h2>
 
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="username">Username</label>
-      <input type="text" id="username" formControlName="username">
-      <div *ngIf="signupForm.controls['username'].errors && (signupForm.controls['username'].touched || signupForm.controls['username'].dirty)">
-        <!--
-        <div *ngIf="signupForm.controls['username'].errors['required']">
-          Username is required.
+    <div class="form-group">
+
+      <label>
+        Username:
+        <input type="text" formControlName="username" />
+        <div *ngIf="signupForm.controls['username'].errors && (signupForm.controls['username'].dirty || formSubmitted)" class="error-message">
+          <div *ngIf="signupForm.controls['username'].errors['required']">Username is required.</div>
+          <div *ngIf="signupForm.controls['username'].errors['minlength']">Username must be at least 3 characters long.</div>
+          <div *ngIf="signupForm.controls['username'].errors['pattern']">Username must only contain alphanumeric characters.</div>
         </div>
-        <div *ngIf="signupForm.controls['username'].errors['minlength']">
-          Username must be at least 3 characters.
-        </div>
-        <div *ngIf="signupForm.controls['username'].errors['pattern']">
-          Username can only contain alphanumeric characters.
-        </div>
-            -->
-      </div>
+      </label>
     </div>
 
-    <div>
-      <label for="password">Password</label>
-      <input type="password" id="password" formControlName="password">
-      <div *ngIf="signupForm.controls['password'].errors && (signupForm.controls['password'].touched || signupForm.controls['password'].dirty)">
-        <!--
-        <div *ngIf="signupForm.controls['password'].errors['required']">
-          Password is required.
+    <div class="form-group">
+      <label>
+        Password:
+        <input type="password" formControlName="password" />
+        <div *ngIf="signupForm.controls['password'].errors && (signupForm.controls['password'].dirty || formSubmitted)" class="error-message">
+          <div *ngIf="signupForm.controls['password'].errors['required']">Password is required.</div>
+          <div *ngIf="signupForm.controls['password'].errors['minlength']">Password must be at least 8 characters long.</div>
+          <div *ngIf="signupForm.controls['password'].errors['pattern']">Password must contain at least one uppercase letter, one lowercase letter, and one digit.</div>
         </div>
-        <div *ngIf="signupForm.controls['password'].errors['minlength']">
-          Password must be at least 8 characters.
-        </div>
-        <div *ngIf="signupForm.controls['password'].errors['pattern']">
-          Password must contain at least one uppercase letter, one lowercase letter, and one digit.
-        </div>
-        -->
-      </div>
+      </label>
     </div>
-
-    <button type="submit" [disabled]="!signupForm.valid">Create account</button>
+    <button type="submit">Submit</button>
   </form>
-</div>
 
-<div *ngIf="errorMessage">{{ errorMessage }}</div>
-<div *ngIf="confirmationMessage">{{ confirmationMessage }}</div>
+  <div *ngIf="confirmationMessage" class="success-message">
+    {{ confirmationMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</div>
