@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
+import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,14 +15,12 @@ export class SignUpComponent implements OnInit {
   confirmationMessage!: string;
   errorMessage!: string;
   signupForm!: FormGroup;
-
   formSubmitted = false;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {  }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     // to:do - fix password regex
-
     // initializes form
     this.signupForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
@@ -31,24 +31,26 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(): void {
     this.formSubmitted = true;
+
     if (this.signupForm.invalid) {
       return;
     }
+
     const username = this.signupForm.controls['username'].value;
     const password = this.signupForm.controls['password'].value;
 
-    // validation, call service
-    this.userService.createUser(username, password).subscribe(
-      success => {
-        if (success) {
-          this.confirmationMessage = 'Account created successfully!';
-        } else {
-          this.errorMessage = 'Username already exists.';
-        }
+    this.authService.signup(username, password)
+    .pipe(first())
+    .subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigate(['login']);
+      },
+      error: (error) => {
+        console.log(error);
       }
-    );
+    });
 
   }
-
 
 }

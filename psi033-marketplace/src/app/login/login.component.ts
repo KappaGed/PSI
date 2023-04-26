@@ -27,15 +27,5 @@ export class LoginComponent implements OnInit {
     const username = this.loginForm.controls['username'].value;
     const password = this.loginForm.controls['password'].value;
 
-    this.userService.login(username, password).subscribe(
-      success => {
-        if (success) {
-          console.log("logged in sucessfully");
-          this.router.navigate(['/dashboard']);
-        } else {
-          this.errorMessage = 'Login unsucessful. Try again.';
-        }
-      }
-    );
   }
 }

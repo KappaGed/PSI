@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,11 +9,11 @@ import { UserService } from '../user.service';
 export class UserDashboardComponent implements OnInit {
   username: string = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     // get user information from service
-    const user = this.userService.getCurrentUser();
+    const user = this.authService.getCurrentUser();
     if (user) {
       this.username = user.username;
     }

@@ -4,3 +4,4 @@
 ## TO-DO:
 - Alert component
 - Move UserService functions into AuthService  
+- Add auth tokens to login, signup
