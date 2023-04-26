@@ -23,6 +23,20 @@ exports.create = (req, res) => {
 };
 
 
+
+// get all users
+exports.getAll = (req, res) => {
+    User.find()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({ message: err.message || "An error occurred while retrieving users from the database" });
+        });
+};
+
+
+
 // find a user by id
 exports.findOne = (req, res) => {
     const id = req.params.id;

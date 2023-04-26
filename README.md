@@ -1,6 +1,6 @@
-# PSI
-
+# PSI Marketplace Project
+## Sprint 1 of the PSI project
 
 ## TO-DO:
-### Create API
-### Move UserService functions into AuthService  
+- Alert component
+- Move UserService functions into AuthService  
