@@ -17,8 +17,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to our marketplace!" });
 });
 
+
 // api routes
-require("./routes/user.routes")(app);
+require("./routes/user.routes")(app); // user
+require("./routes/auth.routes")(app); // auth
+
 
 // set port/listen for requests
 const PORT = process.env.PORT || 8080;

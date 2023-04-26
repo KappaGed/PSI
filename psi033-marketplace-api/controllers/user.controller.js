@@ -44,7 +44,7 @@ exports.findOne = (req, res) => {
     User.findById(id)
         .then(data => {
             if (!data)
-                res.status(404).send({ message: `User with id=${id} not found`});
+                res.status(404).send({ message: `User with id=${id} not found` });
             else res.send(data);
         })
         .catch(err => {
@@ -65,7 +65,7 @@ exports.update = (req, res) => {
     User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data)
-                res.status(404).send({ message: `Cannot update User with id=${id}`});
+                res.status(404).send({ message: `Cannot update User with id=${id}` });
             else res.send({ message: "User was updated successfully" });
         })
         .catch(err => {
