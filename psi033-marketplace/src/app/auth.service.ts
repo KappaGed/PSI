@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { UserService } from './user.service';
+import { tap, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { User } from '../app/user';
 
@@ -15,11 +17,11 @@ const baseUrl = "http://localhost:8080/api/auth";
 export class AuthService {
 
   private userSubject: BehaviorSubject<User | null>;
-  private currentUser: Observable<User | null>;
+  private loggedInUser: Observable<User | null>;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private userService: UserService) {
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')!));
-    this.currentUser = this.userSubject.asObservable();
+    this.loggedInUser = this.userSubject.asObservable();
   }
 
   // register new user
@@ -31,30 +33,35 @@ export class AuthService {
   // login
   login(username: string, password: string): Observable<User> {
     const body = { username, password };
-    return this.http.post<User>(`${baseUrl}/login`, body)
+    let userId: string;
+    return this.http.post<{ message: string, userId: string }>(`${baseUrl}/login`, body)
       .pipe(
+        tap(response => {
+          userId = response.userId;
+        }),
+        switchMap(() => this.userService.getById(userId)),
         tap(user => {
           // store user details in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('loggedInUser', JSON.stringify(userId));
           this.userSubject.next(user);
+          this.loggedInUser = of(user);
           return user;
         })
       );
   }
 
-  // get current user
-  getCurrentUser(): User | null {
-    return this.userSubject.value;
+  // get currently logged in user
+  getLoggedInUser(): Observable<User | null> {
+    return this.loggedInUser;
   }
 
   // logout
   logout(): void {
     // remove from local storage
-    localStorage.removeItem('user');
+    localStorage.removeItem('loggedInUser');
     this.userSubject.next(null);
     this.router.navigate(['login/']);
   }
-
 
 
   // to-do: delete

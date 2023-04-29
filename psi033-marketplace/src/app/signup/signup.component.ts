@@ -31,7 +31,6 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(): void {
     this.formSubmitted = true;
-
     if (this.signupForm.invalid) {
       return;
     }
@@ -50,7 +49,11 @@ export class SignUpComponent implements OnInit {
         console.log(error);
       }
     });
-
   }
+
+  onLoginClick() {
+    this.router.navigate(['/login']);
+  }
+
 
 }

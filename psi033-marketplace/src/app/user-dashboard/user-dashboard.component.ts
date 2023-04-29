@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { User } from '../user';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,16 +10,21 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit {
-  username: string = '';
+  user: User | null = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    // get user information from service
-    const user = this.authService.getCurrentUser();
-    if (user) {
-      this.username = user.username;
+    const userId = localStorage.getItem('loggedInUser');
+    if (userId) {
+      this.userService.getById(userId).subscribe(user => {
+        this.user = user;
+        console.log(user);
+      });
+    } else {
+      this.router.navigate(['/login']);
     }
   }
+
 
 }

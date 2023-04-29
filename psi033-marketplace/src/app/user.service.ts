@@ -20,7 +20,8 @@ export class UserService {
 
   // gets users by id
   getById(id: any): Observable<any> {
-    return this.http.get(`${baseUrl}/${id}`);
+    const userId = id.replace(/"/g, ''); // remove quotation marks from id string
+    return this.http.get(`${baseUrl}/${userId}`);
   }
 
   // create new user
