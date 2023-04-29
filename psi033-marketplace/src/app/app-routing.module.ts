@@ -9,8 +9,8 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'register', component: SignUpComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'register', component: SignUpComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] }
 ];

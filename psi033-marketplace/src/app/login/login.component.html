@@ -1,28 +1,10 @@
-<!--<div class="signup-container">
-  <h2>Login</h2>
-
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" id="username" class="form-control" formControlName="username">
-    </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" id="password" class="form-control" formControlName="password">
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-    <div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>
-  </form>
-
-</div>
--->
 <div class="container d-flex justify-content-center align-items-center " style="height: 90vh;">
   <div class="background"></div>
 
   <div class="card p-4 border rounded shadow" style="width: 400px;">
     <h1 class="mt-1 text-center"><b>Welcome back!</b></h1>
     <h6 class="mb-1 text-center"><i>Don't have an account? <a class="text-decoration-none link-info"
-          routerLink="/reigster" (click)="onRegisterLinkClick()" style="cursor: pointer;"> Create one </a></i></h6>
+          routerLink="/register" (click)="onRegisterLinkClick()" style="cursor: pointer;"> Create one </a></i></h6>
 
     <div class="card-body">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
