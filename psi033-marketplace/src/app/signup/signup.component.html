@@ -1,7 +1,9 @@
-<div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
-  <div class="card p-4 border rounded shadow" style="width: 400px; background-color: transparent;">
-    <h1 class="mt-1 text-center"><b>Register</b></h1>
-    <h6 class="mb-1 text-center"><i>Already a member? <a class="text-decoration-none link-primary" routerLink="/login" (click)="onLoginClick()" style="cursor: pointer;"> Log in </a></i></h6>
+<div class="container d-flex justify-content-center align-items-center " style="height: 90vh;">
+  <div class="background"></div>
+
+  <div class="card p-4 border rounded shadow" style="width: 400px;">
+    <h1 class="mt-1 text-center"><b>Hello, new user!</b></h1>
+    <h6 class="mb-1 text-center"><i>Already a member? <a class="text-decoration-none link-info" routerLink="/login" (click)="onLoginLinkClick()" style="cursor: pointer;"> Log in </a></i></h6>
 
     <div class="card-body">
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
@@ -49,7 +51,7 @@
 
         <!-- register button -->
         <div class="d-grid mt-4">
-            <button type="submit" class="btn btn-secondary btn-md mt-4" style="color:white; font-size: 20px;">Create Account</button>
+            <button type="submit" class="btn btn-info btn-lg mt-4" style="color:white; font-size: 17px;">Create Account</button>
         </div>
       </form>
     </div>

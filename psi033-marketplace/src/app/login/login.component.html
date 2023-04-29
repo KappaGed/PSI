@@ -1,4 +1,4 @@
-<div class="signup-container">
+<!--<div class="signup-container">
   <h2>Login</h2>
 
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -13,5 +13,71 @@
     <button type="submit" class="btn btn-primary">Login</button>
     <div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>
   </form>
+
+</div>
+-->
+<div class="container d-flex justify-content-center align-items-center " style="height: 90vh;">
+  <div class="background"></div>
+
+  <div class="card p-4 border rounded shadow" style="width: 400px;">
+    <h1 class="mt-1 text-center"><b>Welcome back!</b></h1>
+    <h6 class="mb-1 text-center"><i>Don't have an account? <a class="text-decoration-none link-info"
+          routerLink="/reigster" (click)="onRegisterLinkClick()" style="cursor: pointer;"> Create one </a></i></h6>
+
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <!-- username input -->
+        <div class="form-floating mb-3 mt-4">
+          <input type="text" class="form-control is-neutral" formControlName="username" id="username"
+            placeholder="Username" required [ngClass]="{ 'is-invalid': loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched),
+            'is-valid': loginForm.controls['username'].valid }">
+          <label for="username">Username</label>
+          <div class="invalid-feedback">
+            <div
+              *ngIf="loginForm.controls['username'].errors && (loginForm.controls['username'].dirty || formSubmitted)"
+              class="error-message">
+              <ul>
+                <li *ngIf="loginForm.controls['username'].errors['required']">Username is required.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- password input -->
+        <div class="form-floating mb-4">
+          <input type="password" class="form-control is-neutral" formControlName="password" id="password"
+            placeholder="Password" formControlName="password" required [ngClass]="{ 'is-invalid': loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched),
+            'is-valid': loginForm.controls['password'].valid }">
+          <label for="password">Password</label>
+          <div class="invalid-feedback">
+            <div
+              *ngIf="loginForm.controls['password'].errors && (loginForm.controls['password'].dirty || formSubmitted)"
+              class="error-message">
+              <ul>
+                <li *ngIf="loginForm.controls['password'].errors['required']">Password is required.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- register button -->
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-info btn-lg mt-4" style="color:white; font-size: 17px;">Login</button>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+
+
+
+  <div class="alert alert-danger alert-dismissible fade show alert-sm fixed-top w-25" *ngIf="errorMessage" role="alert">
+    <strong>Error:</strong>
+    <p>{{errorMessage}}</p>
+    <!--clear input-->
+    <button type="button" class="text-center btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 
 </div>

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   errorMessage!: string;
+  formSubmitted = false;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {  }
 
@@ -25,6 +26,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.formSubmitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     const username = this.loginForm.controls['username'].value;
     const password = this.loginForm.controls['password'].value;
 
@@ -38,6 +44,10 @@ export class LoginComponent implements OnInit {
           this.errorMessage = error.error.message;
         }
       });
+  }
+
+  onRegisterLinkClick() {
+    this.router.navigate(['/register']);
   }
 
 }
