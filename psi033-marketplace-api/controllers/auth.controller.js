@@ -7,7 +7,7 @@ exports.signup = async (req, res) => {
         // check if user already exists
         const existingUser = await User.findOne({ $or: [{ username }] });
         if (existingUser) {
-            return res.status(409).json({ message: 'User already exists' });
+            return res.status(409).json({ message: 'Username already exists' });
         }
         // create new user 
         const user = new User({

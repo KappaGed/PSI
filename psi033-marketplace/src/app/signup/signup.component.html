@@ -3,15 +3,16 @@
 
   <div class="card p-4 border rounded shadow" style="width: 400px;">
     <h1 class="mt-1 text-center"><b>Hello, new user!</b></h1>
-    <h6 class="mb-1 text-center"><i>Already a member? <a class="text-decoration-none link-info" routerLink="/login" (click)="onLoginLinkClick()" style="cursor: pointer;"> Log in </a></i></h6>
+    <h6 class="mb-1 text-center"><i>Already a member? <a class="text-decoration-none link-info" routerLink="/login"
+          (click)="onLoginLinkClick()" style="cursor: pointer;"> Log in </a></i></h6>
 
     <div class="card-body">
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
 
         <!-- username input -->
         <div class="form-floating mb-3 mt-4">
           <input type="text" class="form-control is-neutral" id="username" placeholder="Username"
-            formControlName="username" [ngClass]="{ 'is-invalid': signupForm.controls['username'].invalid && (signupForm.controls['username'].dirty || signupForm.controls['username'].touched),
+            formControlName="username" [ngClass]="{ 'is-invalid': signupForm.controls['username'].invalid && (signupForm.controls['username'].dirty || signupForm.controls['username'].touched || (formSubmitted && !signupForm.controls['username'].value)),
                                                     'is-valid': signupForm.controls['username'].valid }">
           <label for="username">Username</label>
           <div class="invalid-feedback">
@@ -30,8 +31,7 @@
         <!-- password input -->
         <div class="form-floating mb-4">
           <input type="password" class="form-control is-neutral" id="password" placeholder="Password"
-            formControlName="password"
-            [ngClass]="{ 'is-invalid': signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched),
+            formControlName="password" [ngClass]="{ 'is-invalid': signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched || (formSubmitted && !signupForm.controls['password'].value)),
           'is-valid': signupForm.controls['password'].valid }">
           <label for="password">Password</label>
           <div class="invalid-feedback">
@@ -51,9 +51,16 @@
 
         <!-- register button -->
         <div class="d-grid mt-4">
-            <button type="submit" class="btn btn-info btn-lg mt-4" style="color:white; font-size: 17px;">Create Account</button>
+          <button type="submit" class="btn btn-info btn-lg mt-4" style="color:white; font-size: 17px;">Create
+            account</button>
         </div>
       </form>
     </div>
   </div>
+
+  <div class="alert alert-danger alert-dismissible fade show fixed-top w-25 p-3" role="alert" *ngIf="errorMessage">
+    <strong>Error!</strong> <p>{{errorMessage}}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
 </div>

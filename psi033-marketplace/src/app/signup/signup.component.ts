@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { first } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras} from '@angular/router';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
 
-  confirmationMessage!: string;
+  successMessage!: string;
   errorMessage!: string;
   signupForm!: FormGroup;
   formSubmitted = false;
@@ -20,7 +20,6 @@ export class SignUpComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    // to:do - fix password regex
     // initializes form
     this.signupForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
@@ -31,6 +30,8 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(): void {
     this.formSubmitted = true;
+    this.errorMessage = ''; // clear any previous error messages
+
     if (this.signupForm.invalid) {
       return;
     }
@@ -42,11 +43,15 @@ export class SignUpComponent implements OnInit {
     .pipe(first())
     .subscribe({
       next: (response) => {
-        console.log(response);
-        this.router.navigate(['login']);
+        this.successMessage = "User successfully created!";
+        // send success message to router so it can be displayed
+        const navigationExtras: NavigationExtras = {
+          queryParams: { registrationSuccessMessage: this.successMessage }
+        };
+        this.router.navigate(['login'], navigationExtras);
       },
       error: (error) => {
-        console.log(error);
+        this.errorMessage = error.error.message;
       }
     });
   }
