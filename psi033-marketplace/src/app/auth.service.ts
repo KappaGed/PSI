@@ -44,16 +44,18 @@ export class AuthService {
           // store user details in local storage to keep user logged in between page refreshes
           localStorage.setItem('loggedInUser', JSON.stringify(userId));
           this.userSubject.next(user);
-          this.loggedInUser = of(user);
           return user;
         })
       );
   }
 
-  // get currently logged in user
+  // get currently logged using local storage
   getLoggedInUser(): Observable<User | null> {
-    return this.loggedInUser;
-  }
+    const userId = localStorage.getItem('loggedInUser');
+    if (!userId) {
+      return of(null);
+    }
+    return this.userService.getById(userId);  }
 
   // logout
   logout(): void {
@@ -62,7 +64,6 @@ export class AuthService {
     this.userSubject.next(null);
     this.router.navigate(['login/']);
   }
-
 
   // to-do: delete
 

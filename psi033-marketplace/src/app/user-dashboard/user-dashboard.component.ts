@@ -29,4 +29,8 @@ export class UserDashboardComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
+  redirectToProfile() {
+    this.router.navigate(['/profile']);
+  }
 }

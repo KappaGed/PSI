@@ -5,3 +5,8 @@
   font-family: 'Exo 2', sans-serif;
 }
 
+.sidebar-nav .nav-link:hover {
+  font-style: italic;
+  color: #54B4D3;
+}
+

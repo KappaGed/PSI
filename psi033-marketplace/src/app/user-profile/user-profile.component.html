@@ -1,1 +1,4 @@
-<p>user-profile works!</p>
+<div>
+  <h2>Welcome, {{ user?.username }}!</h2>
+  <img [src]="user?.profilePicture" alt="{{ user?.username }}'s Profile Picture">
+</div>

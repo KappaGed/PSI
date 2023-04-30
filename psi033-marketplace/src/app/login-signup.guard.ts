@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class LoginSignupGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -15,10 +15,10 @@ export class AuthGuard implements CanActivate {
     return this.authService.getLoggedInUser().pipe(
       map(user => {
         if (user) {
-          return true;
-        } else {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/dashboard']);
           return false;
+        } else {
+          return true;
         }
       })
     );

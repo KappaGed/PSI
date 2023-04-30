@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
+const uploadsFolder = path.resolve(__dirname, 'uploads'); // images
 
 var corsOptions = {
     origin: ["http://localhost:8081", "http://localhost:4200"]
@@ -11,18 +13,15 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.json()); // parse requests w/ type application/json
 app.use(express.urlencoded({ extended: true })); // parse requests w/ type application/x-www-form-urlencoded
-app.use('profile-pictures/', express.static('profile-pictures/'));
 
 // simple route to test
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to our marketplace!" });
+    res.json({ message: "Welcome to marketplace33!" });
 });
-
 
 // api routes
 require("./routes/user.routes")(app); // user
 require("./routes/auth.routes")(app); // auth
-
 
 // set port/listen for requests
 const PORT = process.env.PORT || 8080;
