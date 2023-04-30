@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   profilePicture: { 
     type: String, 
     required: false,
-    default: 'https://placehold.jp/e9bee4/ffffff/30x30.png' 
+    default: 'https://placehold.jp/0d1845/ffffff/150x150.png?text=%3AD' 
   }
 });
 

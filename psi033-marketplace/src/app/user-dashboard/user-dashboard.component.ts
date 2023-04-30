@@ -33,4 +33,8 @@ export class UserDashboardComponent implements OnInit {
   redirectToProfile() {
     this.router.navigate(['/profile']);
   }
+
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 }

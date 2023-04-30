@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../user';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,7 +11,7 @@ import { AuthService } from '../auth.service';
 export class UserProfileComponent {
   user! : User | null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.getLoggedInUser().subscribe(user => {
@@ -19,4 +20,16 @@ export class UserProfileComponent {
     });
   }
 
+  logout() {
+    this.authService.logout();
+  }
+
+  redirectToProfile() {
+    this.router.navigate(['/profile']);
+  }
+
+
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 }
