@@ -11,6 +11,7 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.json()); // parse requests w/ type application/json
 app.use(express.urlencoded({ extended: true })); // parse requests w/ type application/x-www-form-urlencoded
+app.use('profile-pictures/', express.static('profile-pictures/'));
 
 // simple route to test
 app.get("/", (req, res) => {
