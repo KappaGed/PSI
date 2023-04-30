@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const path = require('path');
-const uploadsFolder = path.resolve(__dirname, 'uploads'); // images
+
 
 var corsOptions = {
     origin: ["http://localhost:8081", "http://localhost:4200"]
