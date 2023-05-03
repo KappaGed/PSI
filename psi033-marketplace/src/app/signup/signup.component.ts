@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { first } from 'rxjs/operators';
-import { Router, NavigationExtras} from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
     // initializes form
     this.signupForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).+$')]]
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).+$')]]
     });
   }
 

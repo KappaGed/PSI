@@ -11,6 +11,9 @@ module.exports = app => {
     // find a user by id
     router.get("/:id", user.findOne);
 
+    // find a user by username
+    router.get("/username/:username", user.findByUsername);
+
     // update a user by id
     router.put("/:id", user.update);
 

@@ -9,6 +9,8 @@ import { LoginComponent } from '../login/login.component';
 import { UserDashboardComponent } from '../user-dashboard/user-dashboard.component';
 import { LogoutComponent } from '../logout/logout.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
     LoginComponent,
     LogoutComponent,
     UserDashboardComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NavbarComponent,
+    EditProfileComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../user';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
+import { UserService } from '../user.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,27 +9,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent {
-  user! : User | null;
+  user!: User | null;
+  loading: boolean = true;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.authService.getLoggedInUser().subscribe(user => {
-      console.log(user)
-      this.user = user;
+    this.route.params.subscribe(params => {
+      const username = params['username'];
+      this.loading = true;
+      this.userService.getByUsername(username).subscribe({
+        next: user => {
+          this.user = user;
+        },
+        error: err => {
+          this.loading = false;
+          console.log(err);
+        },
+        complete: () => {
+          this.loading = false;
+        }
+      });
     });
   }
 
-  logout() {
-    this.authService.logout();
-  }
-
-  redirectToProfile() {
-    this.router.navigate(['/profile']);
-  }
 
 
-  redirectToDashboard() {
-    this.router.navigate(['/dashboard']);
-  }
 }
