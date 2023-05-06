@@ -16,7 +16,7 @@ export class SearchResultsComponent {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.searchTerm = params['term'];
+      this.searchTerm = params['q'];
       console.log("search term: " + this.searchTerm);
       this.userService.searchUsers(this.searchTerm).subscribe((results: User[]) => {
         this.searchResults = results;

@@ -10,7 +10,7 @@ h1 {
 }
 
 .background {
-  background-color: #54B4D3;
+  background: linear-gradient(to right, #D3A7E3, #8EC5FC, #A6E3D7, #FFD3B6, #FFB6B9);
   position: absolute;
   top: 0;
   left: 0;

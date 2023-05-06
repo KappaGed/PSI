@@ -1,5 +1,14 @@
 <app-navbar></app-navbar>
 
-<ul>
-  <li *ngFor="let result of searchResults">{{ result.username }}</li>
-</ul>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let result of searchResults">
+      <div class="card mb-4">
+        <img class="card-img-top" src="{{ result.profilePicture }}" alt="{{ result.username }}'s profile picture" style="width: 100%; height: auto; aspect-ratio: 1 / 1;">
+        <div class="card-body text-center">
+          <h6 class="card-title">{{ result.username }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
