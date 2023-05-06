@@ -8,7 +8,6 @@ import { of } from 'rxjs';
 
 import { User } from '../app/user';
 
-
 const baseUrl = "http://localhost:8080/api/auth";
 
 @Injectable({

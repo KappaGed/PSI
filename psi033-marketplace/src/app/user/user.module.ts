@@ -11,7 +11,8 @@ import { LogoutComponent } from '../logout/logout.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
-
+import { SearchbarComponent } from '../searchbar/searchbar.component';
+import { SearchResultsComponent } from '../search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
     UserDashboardComponent,
     UserProfileComponent,
     NavbarComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    SearchbarComponent,
+    SearchResultsComponent
   ],
   imports: [
     CommonModule,

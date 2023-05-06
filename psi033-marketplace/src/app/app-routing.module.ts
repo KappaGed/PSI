@@ -8,6 +8,7 @@ import { LoginSignupGuard } from './login-signup.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginSignupGuard] },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'profile/:username', component: UserProfileComponent }
+  { path: 'profile/:username', component: UserProfileComponent },
+  { path: 'search', component: SearchResultsComponent }
 ];
 
 @NgModule({

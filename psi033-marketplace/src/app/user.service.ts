@@ -43,4 +43,9 @@ export class UserService {
   deleteById(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
+
+  // search for users
+  searchUsers(query: string): Observable<User[]>  {
+    return this.http.get<User[]>(`${baseUrl}/search?q=${query}`);
+  }
 }

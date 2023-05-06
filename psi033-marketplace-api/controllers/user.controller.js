@@ -98,3 +98,20 @@ exports.delete = (req, res) => {
             res.status(500).send({ message: `Error deleting User with id=${id} from database` });
         });
 };
+
+// search for users by username
+exports.searchByUsername = (req, res) => {
+    const query = req.query.q;
+
+    User.find({ username: { $regex: query, $options: 'i' } })
+        .then(data => {
+            if (data.length === 0) {
+                res.status(404).send({ message: `No users found with username containing the query '${query}'` });
+            } else {
+                res.send(data);
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: `Error searching for users with username containing the query '${query}'` });
+        });
+};
