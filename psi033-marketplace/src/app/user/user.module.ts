@@ -13,6 +13,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { SearchResultsComponent } from '../search-results/search-results.component';
+import { GameModule } from '../game/game.module';
 
 @NgModule({
   declarations: [
@@ -24,12 +25,13 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
     NavbarComponent,
     EditProfileComponent,
     SearchbarComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    GameModule,
   ],
   providers: [
     UserService

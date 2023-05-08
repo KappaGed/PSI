@@ -1,0 +1,9 @@
+<div *ngIf="game">
+  <h2>{{ game.name | uppercase }} </h2>
+  <div><img src="{{game.imageURL}}" alt=""></div>
+  <div><span>Price: </span>{{game.price}}€</div>
+  <div><span>Description: </span>{{game.description}}</div>
+  <button type="button" (click)="goBack()">go back</button>
+  <button type="button" (click)="addWishlist()">add to wishlist</button>
+  <button type="button" (click)="addcart()">Add to Cart</button>
+</div>

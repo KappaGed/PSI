@@ -1,0 +1,16 @@
+<div id="search-component">
+  <div class="search-bar">
+    <span class="search-icon"><i class="fas fa-search"></i></span>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Search games" />
+  </div>
+
+  <ul class="search-result">
+    <li *ngFor="let game of games$ | async">
+      <a routerLink="/games/{{game._id}}">
+        <img src="{{ game.imageURL }}" alt="{{ game.name }}" class="game-image">
+        <span class="game-name">{{ game.name }}</span>
+        <span class="game-price">{{game.price}}</span>
+      </a>
+    </li>
+  </ul>
+</div>
