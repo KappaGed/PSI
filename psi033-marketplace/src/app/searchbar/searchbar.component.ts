@@ -17,12 +17,24 @@ export class SearchbarComponent implements OnInit {
   ngOnInit(): void { }
 
   searchUsers() {
+    if (!this.searchTerm.trim()) {
+      return;
+    }
     console.log('Search button clicked! term ' + this.searchTerm);
-    this.userService.searchUsers(this.searchTerm).subscribe((results: User[]) => {
-      this.searchResults = results;
-      this.router.navigate(['/search'], { queryParams: { q: this.searchTerm }});
-    });
+    this.userService.searchUsers(this.searchTerm).subscribe(
+      (results: User[]) => {
+        this.searchResults = results;
+        this.router.navigate(['/search'], { queryParams: { q: this.searchTerm }});
+      },
+      (error) => {
+        if (error.status === 404) {
+          this.searchResults = [];
+          this.router.navigate(['/search'], { queryParams: { q: this.searchTerm }});
+        }
+      }
+    );
   }
+
 
 
 }

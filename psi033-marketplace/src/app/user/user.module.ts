@@ -13,6 +13,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { SearchResultsComponent } from '../search-results/search-results.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
     NavbarComponent,
     EditProfileComponent,
     SearchbarComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
