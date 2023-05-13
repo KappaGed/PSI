@@ -54,7 +54,8 @@ export class AuthService {
     if (!userId) {
       return of(null);
     }
-    return this.userService.getById(userId);  }
+    return this.userService.getById(userId);
+  }
 
   // logout
   logout(): void {
@@ -64,7 +65,4 @@ export class AuthService {
     this.router.navigate(['login/']);
   }
 
-  // to-do: delete
-
-  // to-do: update
 }

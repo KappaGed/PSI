@@ -15,7 +15,7 @@ export class SearchResultsComponent {
 
   // pagination
   currentPage: number = 1;
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 6;
   pagedResults: User[] = [];
   totalPages: number = 0;
 

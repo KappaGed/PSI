@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditProfileModalComponent } from '../editprofilemodal/editprofilemodal.component';
+import { AuthService } from '../auth.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,7 +16,7 @@ export class UserProfileComponent {
   user!: User | null;
   loading: boolean = true;
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private modalService: NgbModal, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -33,6 +37,19 @@ export class UserProfileComponent {
     });
   }
 
+  isOwnProfile(): Observable<boolean> {
+    return this.authService.getLoggedInUser().pipe(
+      map(loggedInUser => loggedInUser && loggedInUser.username === this.user?.username || false)
+    );
+  }
 
+  openEditProfileModal() {
+    this.isOwnProfile().subscribe(isOwnProfile => {
+      if (isOwnProfile) {
+        const modalRef = this.modalService.open(EditProfileModalComponent);
+        modalRef.componentInstance.user = this.user;
+      }
+    });
+  }
 
 }

@@ -10,7 +10,7 @@ h1 {
 }
 
 .background {
-  background: url("https://wallpapers.com/images/hd/cute-gaming-jstp356fqrox6ofz.jpg");
+  background: linear-gradient(45deg, #FFA500, #FFC0CB);
   position: absolute;
   top: 0;
   left: 0;

@@ -10,10 +10,10 @@ import { UserDashboardComponent } from '../user-dashboard/user-dashboard.compone
 import { LogoutComponent } from '../logout/logout.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { SearchResultsComponent } from '../search-results/search-results.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { EditProfileModalComponent } from '../editprofilemodal/editprofilemodal.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +23,10 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     UserDashboardComponent,
     UserProfileComponent,
     NavbarComponent,
-    EditProfileComponent,
     SearchbarComponent,
     SearchResultsComponent,
-    SidebarComponent
+    SidebarComponent,
+    EditProfileModalComponent
   ],
   imports: [
     CommonModule,
