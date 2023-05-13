@@ -1,0 +1,38 @@
+.btn-danger {
+  background-color: #a50000;
+  border-color: #a50000;
+}
+
+.btn-danger:hover {
+  background-color: #7a0000;
+  border-color: #7a0000;
+}
+
+.btn-primary {
+  background-color: #5a5a5a;
+  border-color: #5a5a5a;
+}
+
+.btn-primary:hover {
+  background-color: #333333;
+  border-color: #333333;
+}
+
+.shopping {
+  margin-top: 5px;
+  padding: 15px;
+  font-size: large;
+  background-color: #73ae21;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.shopping:hover {
+  background-color: #8bd427;
+}

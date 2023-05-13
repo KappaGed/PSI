@@ -11,17 +11,19 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { GamesComponent } from './games/games.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'register', component: SignUpComponent, },
-  { path: 'login', component: LoginComponent, },
-  { path: 'logout', component: LogoutComponent, },
-  { path: 'dashboard', component: UserDashboardComponent, },
+  { path: 'register', component: SignUpComponent, canActivate: [LoginSignupGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [LoginSignupGuard] },
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] },
   { path: 'profile/:username', component: UserProfileComponent },
   { path: 'search', component: SearchResultsComponent },
   { path: 'games', component: GamesComponent },
   { path: 'games/:id', component: GameDetailComponent },
+  { path: 'cart', component: CartComponent },
 ];
 
 @NgModule({

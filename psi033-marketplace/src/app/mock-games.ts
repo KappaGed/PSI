@@ -1,4 +1,4 @@
-import { Game } from "./game";
+/*import { Game } from "./game";
 
 export const GAMES: Game[] = [
   { _id: 12, name: 'Minecraft', price: 19.99, description: "kill dragon", imageURL: "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/4/28/bjoyslzjb3uxqyg82uz2/minecraft" },
@@ -11,3 +11,4 @@ export const GAMES: Game[] = [
   { _id: 19, name: 'Dragon Ball FighterZ', price: 19.99, description: "punch guy", imageURL: "imagem kamehameha" },
   { _id: 20, name: 'Sea of Thieves', price: 19.99, description: "find tresure", imageURL: "imagem pirata" },
 ];
+*/

@@ -14,6 +14,8 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { SearchResultsComponent } from '../search-results/search-results.component';
 import { GameModule } from '../game/game.module';
+import { CartComponent } from '../cart/cart.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,10 @@ import { GameModule } from '../game/game.module';
     EditProfileComponent,
     SearchbarComponent,
     SearchResultsComponent,
+    CartComponent,
   ],
   imports: [
+    RouterModule,
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
@@ -35,6 +39,6 @@ import { GameModule } from '../game/game.module';
   ],
   providers: [
     UserService
-  ]
+  ],
 })
 export class UserModule { }

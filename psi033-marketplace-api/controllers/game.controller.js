@@ -1,22 +1,5 @@
 const Game = require('../models/game.model');
 
-exports.create = (req, res) => {
-    const game = new Game({
-        id: req.body.id,
-        name: req.body.name,
-        price: req.body.price,
-        description: req.body.description,
-        imagemURL: req.body.imagemURL
-    });
-    game.save().then(data => {
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "An error occurred while creating the new Game in the database"
-        });
-    });
-};
-
 exports.getAll = (req, res) => {
     Game.find().then(data => {
         res.send(data);
@@ -82,7 +65,20 @@ exports.searchGames = (req, res) => {
 
 exports.createGame = async (req, res) => {
     try {
-        const { _id, name, price, description, imageURL } = req.body;
+        const {
+            _id,
+            name,
+            type,
+            description,
+            platform,
+            languages,
+            price,
+            generalRating,
+            reviews,
+            imageUrl,
+            otherImages,
+            videoLink
+        } = req.body;
 
         // Check if the game already exists
         const gameExists = await Game.findOne({ _id });
@@ -91,7 +87,20 @@ exports.createGame = async (req, res) => {
         }
 
         // Create a new game
-        const game = new Game({ _id, name, price, description, imageURL });
+        const game = new Game({
+            _id,
+            name,
+            type,
+            description,
+            platform,
+            languages,
+            price,
+            generalRating,
+            reviews,
+            imageUrl,
+            otherImages,
+            videoLink
+        });
         await game.save();
 
         return res.status(201).json({ message: 'Game created successfully', game });
@@ -113,3 +122,14 @@ exports.getGameById = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 };
+
+exports.createGameA = async (req, res) => {
+    try {
+        const game = new Game(req.body);
+        const savedGame = await game.save();
+        res.status(201).json(savedGame);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+};
+

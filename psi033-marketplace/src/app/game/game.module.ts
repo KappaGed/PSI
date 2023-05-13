@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   exports: [
+    GamesComponent,
     GameSearchComponent,
   ],
   providers: [

@@ -3,7 +3,7 @@ module.exports = app => {
     var router = require("express").Router();
 
     // create a new game
-    router.post("/", game.createGame);
+    router.post("/", game.createGameA);
     // get all games
     router.get("/", game.getAll);
 

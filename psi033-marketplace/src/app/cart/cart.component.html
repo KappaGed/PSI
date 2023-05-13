@@ -1,0 +1,66 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Your Cart
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cartItems; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>
+                  <img src="{{item.game.imageUrl}}" alt="" style="height: 40px; width: 40px;">
+                  <a [routerLink]="['/games', item.game._id]" style="text-decoration: none;color: inherit;"> {{
+                    item.game.name }}</a>
+                </td>
+                <td>{{ item.game.price | currency:'EUR'}}</td>
+                <td>
+                  <button class="btn btn-sm btn-secondary mr-1" (click)="decrementQuantity(item)"
+                    style="border-radius: 10px;background-color: brown; height: 20px;">
+                    <i class="bi bi-dash"></i>
+                  </button>
+                  {{ item.quantity }}
+                  <button class=" btn btn-sm btn-secondary ml-1"
+                    style="height: 20px; border-radius: 20px;background-color: darkgreen;"
+                    (click)="incrementQuantity(item.game)">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                </td>
+                <td>{{ item.game.price * item.quantity | currency:'EUR' }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn btn-danger btn-sm float-right" (click)="emptyCart()">Empty Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Cart Summary
+        </div>
+        <div class="card-body">
+          <p class="text-muted">Total Items: {{ cart.length }}</p>
+          <h5 class="mb-3">Total Price: {{ totalPrice | currency:'EUR'}}</h5>
+          <button class="btn btn-primary btn-block">Checkout</button>
+        </div>
+      </div>
+      <div class="card" style="border: none;">
+        <div class="card-body">
+          <button class="btn btn-secondary btn-block shopping" [routerLink]="['/dashboard']"> Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

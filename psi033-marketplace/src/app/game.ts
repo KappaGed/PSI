@@ -1,7 +1,14 @@
 export interface Game {
-  _id: number;
+  _id: string;
   name: string;
-  price: number;
+  type: string;
   description: string;
-  imageURL: string;
+  platform: string;
+  languages: string;
+  price: number;
+  generalRating: number;
+  reviews: [string];
+  imageUrl: string;
+  otherImages?: [String];
+  videoLink?: string;
 }

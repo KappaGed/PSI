@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
 import { User } from '../app/user'
+import { Game } from './game';
 
 const baseUrl = "http://localhost:8080/api/users";
 
@@ -45,7 +46,15 @@ export class UserService {
   }
 
   // search for users
-  searchUsers(query: string): Observable<User[]>  {
+  searchUsers(query: string): Observable<User[]> {
     return this.http.get<User[]>(`${baseUrl}/search?q=${query}`);
   }
+
+  getUserCart(): Observable<Game[]> {
+    return this.http.get<Game[]>(`http://localhost:8080/api/cart`);
+  }
+
+  // addToCart(id: string, game: Game): Observable<any> {
+
+  // }
 }

@@ -24,19 +24,7 @@ export class GameService {
     return this.http.get<Game[]>(this.gamesUrl)
   }
 
-  getGameNo404<Data>(id: number): Observable<Game> {
-    const url = `${this.gamesUrl}/?id=${id}`;
-    return this.http.get<Game[]>(url)
-      .pipe(
-        map(games => games[0]), // returns a {0|1} element array
-        tap(g => {
-          const outcome = g ? 'fetched' : 'did not find';
-        }),
-        catchError(this.handleError<Game>(`getGame id=${id}`))
-      );
-  }
-
-  getGame(id: number): Observable<Game> {
+  getGame(id: string): Observable<Game> {
     const url = `${this.gamesUrl}/${id}`;
     return this.http.get<Game>(url).pipe(
       catchError(this.handleError<Game>(`getGame id=${id}`))
