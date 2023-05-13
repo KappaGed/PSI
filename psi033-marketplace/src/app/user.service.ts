@@ -36,12 +36,14 @@ export class UserService {
 
   // update user info
   update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    const userId = id.replace(/"/g, '');
+    return this.http.put(`${baseUrl}/${userId}`, data);
   }
 
   // delete user
   deleteById(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+    const userId = id.replace(/"/g, '');
+    return this.http.delete(`${baseUrl}/${userId}`);
   }
 
   // search for users

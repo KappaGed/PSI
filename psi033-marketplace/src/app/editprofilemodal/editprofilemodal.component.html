@@ -1,23 +1,32 @@
 <div class="modal-header">
-  <h6 class="modal-title">Edit Profile</h6>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <h4 class="modal-title">Edit Profile</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
 </div>
 <div class="modal-body">
-  <form [formGroup]="editProfileForm">
+  <form [formGroup]="editProfileForm" (ngSubmit)="saveChanges()" novalidate>
+
+    <!-- Username input -->
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" formControlName="username">
-
+      <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter username">
+      <!-- Validation messages -->
     </div>
+
+    <!-- Profile picture selection -->
     <div class="form-group">
-      <label for="profilePicture">Profile Picture</label>
-      <select class="form-control" id="profilePicture" formControlName="profilePicture">
-        <option *ngFor="let picture of profilePictures" [value]="picture">{{ picture }}</option>
-      </select>
+      <label>Profile Picture</label>
+      <div class="d-flex justify-content-between align-items-center" style="flex-wrap: wrap;">
+        <div class="picture-item mb-2" *ngFor="let picture of profilePictures">
+          <img [src]="picture.url" alt="Profile Picture" class="img-thumbnail picture-image"
+            (click)="selectProfilePicture(picture)" [class.active]="picture === selectedProfilePicture">
+          <div class="selector" *ngIf="picture === selectedProfilePicture"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-info text-white" [disabled]="editProfileForm.invalid">save changes</button>
+      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">cancel</button>
     </div>
   </form>
-  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
 </div>

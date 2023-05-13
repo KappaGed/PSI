@@ -48,8 +48,18 @@ export class UserProfileComponent {
       if (isOwnProfile) {
         const modalRef = this.modalService.open(EditProfileModalComponent);
         modalRef.componentInstance.user = this.user;
+
+        modalRef.result.then((result: string | undefined) => {
+          if (result) {
+            this.router.navigate(['/profile', result]).then(() => {
+              window.location.reload(); // reload the page after the redirect
+            });          }
+        }).catch((error) => {
+          console.log('Modal dismissed');
+        });
       }
     });
   }
+
 
 }
