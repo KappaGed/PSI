@@ -43,6 +43,7 @@ export class UserProfileComponent {
     );
   }
 
+
   openEditProfileModal() {
     this.isOwnProfile().subscribe(isOwnProfile => {
       if (isOwnProfile) {
@@ -53,13 +54,16 @@ export class UserProfileComponent {
           if (result) {
             this.router.navigate(['/profile', result]).then(() => {
               window.location.reload(); // reload the page after the redirect
-            });          }
+            });
+          }
         }).catch((error) => {
           console.log('Modal dismissed');
         });
       }
     });
   }
+
+
 
 
 }

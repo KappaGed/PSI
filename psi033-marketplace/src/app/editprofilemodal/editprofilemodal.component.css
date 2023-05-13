@@ -20,7 +20,7 @@
 }
 
 .selector::before {
-  content: "\2713"; /* Checkmark icon character code */
+  content: "\1F5F8"; /* Checkmark icon character code */
   font-family: "Arial", sans-serif; /* Specify the font family */
   font-weight: bold; /* Make the checkmark icon bold */
 }
