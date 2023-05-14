@@ -5,11 +5,11 @@
 <div class="modal-body">
   <form [formGroup]="editProfileForm" (ngSubmit)="saveChanges()" novalidate>
 
-    <!-- Username input -->
+    <!-- username input -->
     <div class="form-floating mb-3 mt-4">
       <input type="text" class="form-control is-neutral" formControlName="username" id="username" placeholder="Username" required
         [ngClass]="{
-          'is-invalid': editProfileForm.controls['username'].invalid && (editProfileForm.controls['username'].dirty || editProfileForm.controls['username'].touched || (formSubmitted && !editProfileForm.controls['username'].value)),
+          'is-invalid': (editProfileForm.controls['username'].invalid || usernameExists) && (editProfileForm.controls['username'].dirty || editProfileForm.controls['username'].touched || (formSubmitted && !editProfileForm.controls['username'].value)),
           'is-valid': editProfileForm.controls['username'].valid
         }">
       <label for="username">Username</label>
@@ -25,8 +25,7 @@
       </div>
     </div>
 
-
-    <!-- Profile picture selection -->
+    <!-- profile picture selection -->
     <div class="form-group">
       <label>Profile Picture</label>
       <div class="d-flex justify-content-between align-items-center" style="flex-wrap: wrap;">
@@ -45,11 +44,12 @@
   </form>
 
   <div class="fixed-top w-100 d-flex justify-content-center">
-    <div class="alert alert-danger alert-dismissible fade show w-25 p-3 mt-2" role="alert" *ngIf="errorMessage">
+    <div class="alert alert-danger alert-dismissible fade show w-25 p-3 mt-2" role="alert" id="alert" *ngIf="errorMessage">
       <strong>Error!</strong> <p>{{errorMessage}}</p>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>
+
 
 </div>
 

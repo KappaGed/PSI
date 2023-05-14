@@ -29,12 +29,14 @@ export class SearchResultsComponent {
         (results: User[]) => {
           this.searchResults = results;
           this.errorMessage = '';
-          this.updatePagination(); // Update pagination after receiving search results
-          this.updatePagedResults(); // Update paged results after receiving search results
+          this.updatePagination();
+          this.updatePagedResults();
         },
         error => {
           this.errorMessage = error.error.message;
           this.searchResults = [];
+          this.updatePagination();
+          this.updatePagedResults();
         }
       );
     });
@@ -59,7 +61,7 @@ export class SearchResultsComponent {
 
   updatePagination() {
     this.totalPages = Math.ceil(this.searchResults.length / this.itemsPerPage);
-    this.currentPage = 1; // Reset to the first page when updating the search results
+    this.currentPage = 1;
     this.updatePagedResults();
   }
 

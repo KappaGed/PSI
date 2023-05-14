@@ -24,11 +24,84 @@
         <h1 class="card-title"> {{ user.username | uppercase }} </h1>
       </div>
       <div class="card-body">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="games-tab" data-toggle="tab" href="#games" role="tab" aria-controls="games" aria-selected="true">Games</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="false">Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="followers-tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="false">Followers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="false">Following</a>
+          </li>
+        </ul>
+
+        <div class="tab-content mt-3">
+          <div class="tab-pane fade show active" id="games" role="tabpanel" aria-labelledby="games-tab">
+            <!-- games content -->
+          </div>
+          <div class="tab-pane fade" id="lists" role="tabpanel" aria-labelledby="lists-tab">
+            <div class="accordion accordion-sm" id="listsAccordion">
+              <!-- wishlist -->
+              <div class="card">
+                <div class="card-header" id="wishlistHeading">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#wishlistCollapse" aria-expanded="true" aria-controls="wishlistCollapse">
+                      Wishlist
+                    </button>
+                  </h2>
+                </div>
+                <div id="wishlistCollapse" class="collapse" aria-labelledby="wishlistHeading" data-parent="#listsAccordion">
+                  <div class="card-body">
+                    <!-- wishlist items -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- other lists -->
+              <div class="card">
+                <div class="card-header" id="otherListsHeading">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#otherListsCollapse" aria-expanded="false" aria-controls="otherListsCollapse">
+                      Created list #1
+                    </button>
+                  </h2>
+                </div>
+                <div id="otherListsCollapse" class="collapse" aria-labelledby="otherListsHeading" data-parent="#listsAccordion">
+                  <div class="card-body">
+                    <!-- other lists items go here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="followers-tab">
+            <!-- followers content -->
+          </div>
+
+          <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
+            <!-- following content -->
+          </div>
+        </div>
       </div>
+
     </div>
     <div *ngIf="!user" class="alert alert-danger" role="alert">
       Profile not found.
     </div>
+
   </div>
 </ng-template>
 
+
+<div class="fixed-top w-100 d-flex justify-content-center">
+  <div class="alert alert-success alert-dismissible fade show w-25 p-3 mt-2" role="alert" *ngIf="successMessage">
+    <span>{{ successMessage }}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
