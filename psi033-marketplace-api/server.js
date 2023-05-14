@@ -21,6 +21,8 @@ app.get("/", (req, res) => {
 // api routes
 require("./routes/user.routes")(app); // user
 require("./routes/auth.routes")(app); // auth
+require("./routes/games.routes")(app);
+require("./routes/cart.routes")(app);
 
 // set port/listen for requests
 const PORT = process.env.PORT || 8080;

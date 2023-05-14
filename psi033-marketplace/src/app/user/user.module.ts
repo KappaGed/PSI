@@ -14,6 +14,10 @@ import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { SearchResultsComponent } from '../search-results/search-results.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { EditProfileModalComponent } from '../editprofilemodal/editprofilemodal.component';
+import { GameModule } from '../game/game.module';
+import { CartComponent } from '../cart/cart.component';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,19 +26,21 @@ import { EditProfileModalComponent } from '../editprofilemodal/editprofilemodal.
     LogoutComponent,
     UserDashboardComponent,
     UserProfileComponent,
-    NavbarComponent,
-    SearchbarComponent,
     SearchResultsComponent,
     SidebarComponent,
-    EditProfileModalComponent
+    EditProfileModalComponent,
+    CartComponent,
   ],
   imports: [
+    SharedModule,
+    RouterModule,
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    GameModule,
   ],
   providers: [
     UserService
-  ]
+  ],
 })
 export class UserModule { }

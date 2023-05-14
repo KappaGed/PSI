@@ -57,6 +57,10 @@ export class AuthService {
     return this.userService.getById(userId);
   }
 
+  getLoggedInUserId(): string | null {
+    return localStorage.getItem('loggedInUser');
+  }
+
   // logout
   logout(): void {
     // remove from local storage

@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class UserDashboardComponent implements OnInit {
   user: User | null = null;
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
+  constructor(private authService: AuthService, private userService: UserService, private router: Router, private GameService: GameService) { }
 
   ngOnInit() {
     const userId = localStorage.getItem('loggedInUser');
