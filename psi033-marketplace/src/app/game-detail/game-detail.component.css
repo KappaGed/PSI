@@ -80,3 +80,23 @@
 .back-button:hover span {
   transform: translateX(-10px);
 }
+
+.wishlist {
+  float: right;
+  background-color: #465564bd;
+  color: white;
+  font-size: 16px;
+  padding: 5px 20px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 2px 2px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.wishlist:hover {
+  background-color: #34495ebd;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 2px 4px rgba(0, 0, 0, 0.25);
+}

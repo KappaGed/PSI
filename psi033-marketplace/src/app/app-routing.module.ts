@@ -12,6 +12,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { GamesComponent } from './games/games.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { CartComponent } from './cart/cart.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'games', component: GamesComponent },
   { path: 'games/:id', component: GameDetailComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'wishlist', component: WishlistComponent },
 ];
 
 @NgModule({

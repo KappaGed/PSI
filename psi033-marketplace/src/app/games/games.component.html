@@ -15,7 +15,8 @@
           <p class="card-text"><small class="text-muted">{{game.type}}</small></p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">{{game.price | currency:'EUR'}}</small>
+          <small class="text-muted" *ngIf="game.price === 0">Free</small>
+          <small class="text-muted" *ngIf="game.price > 0">{{game.price | currency:'EUR'}}</small>
         </div>
       </a>
     </div>

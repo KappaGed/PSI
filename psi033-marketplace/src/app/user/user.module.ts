@@ -9,8 +9,6 @@ import { LoginComponent } from '../login/login.component';
 import { UserDashboardComponent } from '../user-dashboard/user-dashboard.component';
 import { LogoutComponent } from '../logout/logout.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { SearchResultsComponent } from '../search-results/search-results.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { EditProfileModalComponent } from '../editprofilemodal/editprofilemodal.component';
@@ -18,6 +16,7 @@ import { GameModule } from '../game/game.module';
 import { CartComponent } from '../cart/cart.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { WishlistComponent } from '../wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +29,7 @@ import { SharedModule } from '../shared/shared.module';
     SidebarComponent,
     EditProfileModalComponent,
     CartComponent,
+    WishlistComponent,
   ],
   imports: [
     SharedModule,

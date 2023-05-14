@@ -4,10 +4,10 @@ import { Location } from '@angular/common';
 
 import { Game } from '../game';
 import { GameService } from '../game.service';
-import { AuthService } from '../auth.service';
 import { CartService } from '../cart.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { WishlistService } from '../wishlist.service';
 
 @Component({
   selector: 'app-game-detail',
@@ -15,8 +15,10 @@ import { UserService } from '../user.service';
   styleUrls: ['./game-detail.component.css']
 })
 export class GameDetailComponent implements OnInit {
+
   user!: User | null;
   game: Game | undefined;
+  onWishlist: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,25 +26,30 @@ export class GameDetailComponent implements OnInit {
     private router: Router,
     private gameService: GameService,
     private cartService: CartService,
+    private wishlistService: WishlistService,
     private userService: UserService,
   ) { }
 
   ngOnInit(): void {
-    this.getGame();
     const userId = localStorage.getItem('loggedInUser');
     if (userId) {
       this.userService.getById(userId).subscribe(user => {
         this.user = user;
+        this.getGame();
         console.log(user);
       });
     }
   }
 
+
   getGame(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.gameService.getGame(id)
-        .subscribe(game => this.game = game);
+      this.gameService.getGame(id).subscribe(game => {
+        this.game = game;
+        this.isOnWishlist();
+        console.log(this.onWishlist);
+      });
     }
   }
 
@@ -51,8 +58,20 @@ export class GameDetailComponent implements OnInit {
   }
 
   addWishlist(): void {
+    if (this.onWishlist) {
+      return;
+    }
 
+    if (!this.game || !this.user) {
+      return;
+    }
+
+    this.wishlistService.addToWishist(this.user._id, this.game).subscribe(() => {
+      this.onWishlist = true;
+    });
   }
+
+
 
   addToCart(): void {
     if (this.game && this.user) {
@@ -76,5 +95,13 @@ export class GameDetailComponent implements OnInit {
     return Array(fullStars).fill(1).concat(Array(halfStars).fill(0.5)).concat(Array(emptyStars).fill(0));
   }
 
+  isOnWishlist(): void {
+    if (this.user && this.game) {
+      this.wishlistService.isOnWishlist(this.user._id, this.game).subscribe(response => {
+        this.onWishlist = response.isOnWishlist;
+        console.log('Is on wishlist:', this.onWishlist);
+      });
 
+    }
+  }
 }

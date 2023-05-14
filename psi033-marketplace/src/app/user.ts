@@ -6,5 +6,5 @@ export interface User {
   password: string;
   profilePicture?: string;
   cart: Game[];
-  wishilst: Game[];
+  wishlist: Game[];
 }

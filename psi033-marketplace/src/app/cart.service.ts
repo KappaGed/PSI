@@ -38,7 +38,7 @@ export class CartService {
   }
 
   updateCartItem(itemId: string, updatedItem: any) {
-    return this.http.put(`${this.cartUrl} / ${itemId}`, updatedItem);
+    return this.http.put(`${this.cartUrl}/${itemId}`, updatedItem);
   }
 
 }

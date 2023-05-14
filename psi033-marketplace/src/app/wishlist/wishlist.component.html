@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let game of wishlist">
+      <div class="card mb-4 box-shadow">
+        <img class="card-img-top" src="{{game.imageUrl}}" alt="{{game.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{game.name}}</h5>
+          <p class="card-text">{{game.description}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary" (click)="removeGameFromWishlist(game)">
+                Remove
+              </button>
+            </div>
+            <small class="text-muted">{{game.price | currency}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

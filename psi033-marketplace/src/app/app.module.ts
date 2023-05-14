@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GameModule } from './game/game.module';
-import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({

@@ -45,9 +45,14 @@
             </div>
           </div>
           <div class="col">
-            <button onclick="addToWishlist()"
-              style="float:right;background-color:#465564bd;color:white; font-size: 16px; padding:5px 20px;margin-right:5px;border:none;border-radius:2px;cursor:pointer;box-shadow:0 1px 0 rgba(255,255,255,0.2) inset, 0 2px 2px rgba(0,0,0,0.25); text-shadow: 0 -1px 0 rgba(0,0,0,0.5);"><i
-                class="fa fa-heart"></i> Add to Wishlist</button>
+            <button class="wishlist" (click)="addWishlist()">
+              <ng-container *ngIf="onWishlist; else notOnWishlist">
+                On Wishlist <i class="bi bi-check2-square"></i>
+              </ng-container>
+              <ng-template #notOnWishlist>
+                Add to Wishlist
+              </ng-template>
+            </button>
           </div>
         </div>
       </div>
@@ -56,8 +61,10 @@
           {{ game.description }}
           <div class="row ">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item" *ngIf="game.videoLink != ''"><strong>Trailer: </strong> <a
-                  href="{{ game.videoLink }}" target="_blank">{{ game.videoLink }}</a></li>
+              <li class="list-group-item" *ngIf="game.videoLink != ''">
+                <strong>Trailer: </strong> <a href="{{ game.videoLink }}" target="_blank">
+                  <i class="bi bi-youtube" style="color:#ff0000;"></i></a>
+              </li>
               <li class="list-group-item"><strong>Type: </strong> {{ game.type }}</li>
               <li class="list-group-item"><strong>Platform: </strong> {{ game.platform }}</li>
               <li class="list-group-item"><strong>Languages: </strong> {{ game.languages }}</li>
