@@ -101,7 +101,6 @@ export class GameDetailComponent implements OnInit {
         this.onWishlist = response.isOnWishlist;
         console.log('Is on wishlist:', this.onWishlist);
       });
-
     }
   }
 }

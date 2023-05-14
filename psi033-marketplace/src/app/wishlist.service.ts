@@ -12,7 +12,7 @@ export class WishlistService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private wishlistUrl = 'http://localhost:8080/api/users/';
+  private wishlistUrl = 'http://appserver.alunos.di.fc.ul.pt:3033/api/users/';
 
   constructor(
     private http: HttpClient,
