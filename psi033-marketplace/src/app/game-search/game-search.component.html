@@ -1,15 +1,17 @@
 <div id="search-component">
-  <div class="search-bar">
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Search games" />
-    <span class="search-icon"><i class="bi bi-search"></i></span>
+  <div class="search-bar input-group">
+    <input #searchBox id="search-box" class="form-control" (input)="search(searchBox.value)"
+      placeholder="Search games" />
+    <span class="input-group-text" style="border: none; background-color:#171a21;"><i style="color: white;"
+        class="bi bi-search"></i></span>
   </div>
-  <ul class="search-result">
-    <li *ngFor="let game of games$ | async">
-      <a routerLink="/games/{{game._id}}">
-        <img src="{{ game.imageUrl }}" alt="{{ game.name }}" class="game-image">
+  <ul class="search-result list-group mt-3">
+    <li *ngFor="let game of games$ | async" class="list-group-item">
+      <a routerLink="/games/{{game._id}}" class="d-flex align-items-center">
+        <img src="{{ game.imageUrl }}" alt="{{ game.name }}" class="game-image me-3">
         <span class="game-name">{{ game.name }}</span>
-        <span class="game-price" *ngIf="game.price > 0">{{game.price}}</span>
-        <span class="game-price" *ngIf="game.price === 0">Free</span>
+        <span class="game-price ms-auto" *ngIf="game.price > 0">{{game.price}}</span>
+        <span class="game-price ms-auto" *ngIf="game.price === 0">Free</span>
       </a>
     </li>
   </ul>

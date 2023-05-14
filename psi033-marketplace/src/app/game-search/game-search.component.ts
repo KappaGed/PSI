@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 
 import { Game } from '../game';
 import { GameService } from '../game.service';
@@ -12,6 +12,7 @@ import { GameService } from '../game.service';
 })
 export class GameSearchComponent implements OnInit {
   games$!: Observable<Game[]>;
+
   private searchTerms = new Subject<string>();
 
   constructor(private gameService: GameService) { }
@@ -25,6 +26,7 @@ export class GameSearchComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((term: string) => this.gameService.searchGames(term)),
+      map(games => games.length > 0 ? games : [{ name: 'No Results' }] as Game[])
     );
   }
 }
