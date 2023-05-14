@@ -20,9 +20,9 @@
 }
 
 .selector::before {
-  content: "\1F5F8"; /* Checkmark icon character code */
-  font-family: "Arial", sans-serif; /* Specify the font family */
-  font-weight: bold; /* Make the checkmark icon bold */
+  content: "\1F5F8";
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
 }
 
 
@@ -34,3 +34,4 @@
 .picture-item.active .selector {
   display: block;
 }
+

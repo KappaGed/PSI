@@ -16,6 +16,8 @@ export class EditProfileModalComponent {
   errorMessage: string | null = null;
   successMessage: string | null = null;
   selectedProfilePicture: { url: string } | null = null;
+  formSubmitted = false;
+  usernameExists = false;
 
   profilePictures = [
     { url: 'https://img.freepik.com/free-vector/cute-astronaut-chill-relaxation-game-controller-cartoon-vector-icon-illustration-technology-science-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3717.jpg' },
@@ -61,6 +63,7 @@ export class EditProfileModalComponent {
       // check if the new username already exists
       this.userService.getByUsername(username).subscribe((data) => {
         if (data) {
+          this.usernameExists = true;
           this.errorMessage = 'Username already exists';
         } else {
           this.updateUser(userId, username, profilePicture);
