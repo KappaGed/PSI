@@ -1,23 +1,58 @@
 <div class="modal-header">
-  <h6 class="modal-title">Edit Profile</h6>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <h4 class="modal-title">Edit Profile</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
 </div>
 <div class="modal-body">
-  <form [formGroup]="editProfileForm">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" formControlName="username">
+  <form [formGroup]="editProfileForm" (ngSubmit)="saveChanges()" novalidate>
 
+    <!-- username input -->
+    <div class="form-floating mb-3 mt-4">
+      <input type="text" class="form-control is-neutral" formControlName="username" id="username" placeholder="Username" required
+        [ngClass]="{
+          'is-invalid': (editProfileForm.controls['username'].invalid || usernameExists) && (editProfileForm.controls['username'].dirty || editProfileForm.controls['username'].touched || (formSubmitted && !editProfileForm.controls['username'].value)),
+          'is-valid': editProfileForm.controls['username'].valid
+        }">
+      <label for="username">Username</label>
+      <div class="invalid-feedback">
+        <div *ngIf="editProfileForm.controls['username'].errors && (editProfileForm.controls['username'].dirty || formSubmitted)" class="error-message">
+          <ul>
+            <li *ngIf="editProfileForm.controls['username'].errors['required']">Username is required.</li>
+            <li *ngIf="editProfileForm.controls['username'].errors['minlength']">Username must have at least 3 characters.</li>
+            <li *ngIf="editProfileForm.controls['username'].errors['pattern']">Username can only contain alphanumeric characters.</li>
+            <li *ngIf="usernameExists">Username already exists.</li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+    <!-- profile picture selection -->
     <div class="form-group">
-      <label for="profilePicture">Profile Picture</label>
-      <select class="form-control" id="profilePicture" formControlName="profilePicture">
-        <option *ngFor="let picture of profilePictures" [value]="picture">{{ picture }}</option>
-      </select>
+      <label>Profile Picture</label>
+      <div class="d-flex justify-content-between align-items-center" style="flex-wrap: wrap;">
+        <div class="picture-item mb-2" *ngFor="let picture of profilePictures">
+          <img [src]="picture.url" alt="Profile Picture" class="img-thumbnail picture-image"
+            (click)="selectProfilePicture(picture)" [class.active]="picture === selectedProfilePicture">
+          <div class="selector" *ngIf="picture === selectedProfilePicture"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-info text-white" [disabled]="editProfileForm.invalid">Save Changes</button>
+      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
     </div>
   </form>
-  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+
+  <div class="fixed-top w-100 d-flex justify-content-center">
+    <div class="alert alert-danger alert-dismissible fade show w-25 p-3 mt-2" role="alert" id="alert" *ngIf="errorMessage">
+      <strong>Error!</strong> <p>{{errorMessage}}</p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+
+
 </div>
+
+
+
+

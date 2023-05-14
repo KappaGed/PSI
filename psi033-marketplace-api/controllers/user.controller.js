@@ -51,19 +51,19 @@ exports.findOne = (req, res) => {
 // find a user by username
 exports.findByUsername = (req, res) => {
     const username = req.params.username;
-  
+
     User.findOne({ username: username })
-      .then(data => {
-        if (!data) {
-          res.status(404).send({ message: `User with username=${username} not found` });
-        } else {
-          res.send(data);
-        }
-      })
-      .catch(err => {
-        res.status(500).send({ message: `Error retrieving User with username=${username}` });
-      });
-  }; 
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `User with username=${username} not found` });
+            } else {
+                res.send(data);
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: `Error retrieving User with username=${username}` });
+        });
+};
 
 // update a user by id
 exports.update = (req, res) => {
