@@ -47,7 +47,7 @@
           <div class="col">
             <button class="wishlist" (click)="addWishlist()">
               <ng-container *ngIf="onWishlist; else notOnWishlist">
-                On Wishlist <i class="bi bi-check2-square"></i>
+                <i class="bi bi-check2-square"></i> On Wishlist
               </ng-container>
               <ng-template #notOnWishlist>
                 Add to Wishlist
