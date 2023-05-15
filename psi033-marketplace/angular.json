@@ -62,6 +62,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 3033,
+            "host": "0.0.0.0",
+            "disableHostCheck": true
+          },
           "configurations": {
             "production": {
               "browserTarget": "psi033-marketplace:build:production"

@@ -10,7 +10,7 @@ import { Game } from './game';
 @Injectable({ providedIn: 'root' })
 export class GameService {
 
-  private gamesUrl = 'http://appserver.alunos.di.fc.ul.pt:3033/api/games';
+  private gamesUrl = 'http://appserver.alunos.di.fc.ul.pt:3083/api/games';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

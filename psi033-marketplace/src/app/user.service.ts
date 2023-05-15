@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../app/user'
 import { Game } from './game';
 
-const baseUrl = "http://appserver.alunos.di.fc.ul.pt:3033/api/users";
+const baseUrl = "http://appserver.alunos.di.fc.ul.pt:3083/api/users";
 
 @Injectable({
   providedIn: 'root'
