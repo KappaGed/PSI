@@ -8,7 +8,7 @@ import { Observable, map, of, switchMap } from 'rxjs';
 })
 export class CartService {
 
-  private cartUrl = 'http://appserver.alunos.di.fc.ul.pt:3083/api/users/';
+  private cartUrl = 'http://10.101.151.25:3083/api/users/';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

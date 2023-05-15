@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 
 import { User } from '../app/user';
 
-const baseUrl = "http://appserver.alunos.di.fc.ul.pt:3083/api/auth";
+const baseUrl = "http://10.101.151.25:3083/api/auth";
 
 @Injectable({
   providedIn: 'root'

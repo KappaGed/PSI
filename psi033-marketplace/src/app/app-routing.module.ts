@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
